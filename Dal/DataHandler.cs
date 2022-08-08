@@ -49,7 +49,7 @@ public class DataHandler : DataHandlerBase
             _commandText += GetFullDataEntityName();
             _commandText += " ( " + GetFieldList(false, false);
             _commandText += " ) " + Constants.SQL_VALUES;
-            _commandText += " ( " + GetParameterizedValuesList(false);
+            _commandText += " ( " + GetParameterizedValuesList(false,false);
             _commandText += " )";
             BuildParameterValuesList(item);
             _commandText +=  ConfigurationHandler.PkFunction;

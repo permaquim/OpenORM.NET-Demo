@@ -246,7 +246,7 @@ using System.Text;
 	} //namespace AccesoADatos.Business.Tables.dbo
 	namespace AccesoADatos.Business.Tables.dbo {
 	    /// <summary>
-	    /// 
+	    /// Es la tabla de paises
 	    /// </summary>
 		public class Pais : DataHandler
 		{
@@ -767,7 +767,21 @@ using System.Text;
                  {
                      base.Add(conjunction, Enum.GetName(typeof(ColumnEnum), column), operand, value);
                  }
-                 public new void Clear()
+                public void OpenParentheses()
+                {
+                    base.OpenParentheses();
+                }
+                public void CloseParentheses()
+                {
+                    base.CloseParentheses();
+                }
+
+                public void AddOperand(AccesoADatos.sqlEnum.ConjunctionEnum Conjunction)
+                {
+                    base.AddConjunction(Conjunction);
+                }
+
+            public new void Clear()
                  {
                      base.Clear();
                  }

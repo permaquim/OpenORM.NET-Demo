@@ -238,12 +238,12 @@ public class DataHandlerBase: IDataHandler
     /// </summary>
     /// <param name="includePk"></param>
     /// <returns></returns>
-    protected String GetParameterizedValuesList(bool includePk)
+    protected String GetParameterizedValuesList(bool includePk, bool includeComputed)
     {
         string result = string.Empty;
         foreach (DataFieldDefinition field in _dataFieldDefinitions)
         {
-            if (!field.IsPk || (field.IsPk && !field.IsAuto) || (includePk && field.IsPk))
+            if ((!field.IsPk && !field.IsComputed) || (field.IsPk && !field.IsAuto) || (includePk && field.IsPk) || (includeComputed && field.IsComputed))
                 result += _parameterPrefix + field.Name + ",";
         }
         return result.Substring(0, result.Length - 1);
@@ -257,10 +257,15 @@ public class DataHandlerBase: IDataHandler
         _parameterizedValues.Clear();
         foreach (ParameterItem field in item._whereParameters)
         {
-            foreach (ParameterItemValue value in field.Values)
+            if (field.Values != null)
             {
-                _parameterizedValues.Add(new ParameterItemValue(value.Name.Replace(Constants.INPUT_PARAMETER, _parameterPrefix), value.Value));
+                foreach (ParameterItemValue value in field.Values)
+                {
+                    _parameterizedValues.Add(new ParameterItemValue(value.Name.Replace(Constants.INPUT_PARAMETER, _parameterPrefix), value.Value));
+                }
             }
+            else
+                _parameterizedValues.Add(new ParameterItemValue(field.FullQuery, null));
         }
     }	
     /// <summary>
@@ -427,10 +432,13 @@ public class DataHandlerBase: IDataHandler
         newCommand.CommandTimeout = _commandTimeout;
         foreach (ParameterItemValue parameterValue in _parameterizedValues)
 		{
-			IDbDataParameter parameter = newCommand.CreateParameter();
-			parameter.ParameterName = parameterValue.Name;
-			parameter.Value = parameterValue.Value == null ? DBNull.Value : parameterValue.Value;
-			newCommand.Parameters.Add(parameter);
+            if (parameterValue.Value != null)
+            {
+                IDbDataParameter parameter = newCommand.CreateParameter();
+                parameter.ParameterName = parameterValue.Name;
+                parameter.Value = parameterValue.Value == null ? DBNull.Value : parameterValue.Value;
+                newCommand.Parameters.Add(parameter);
+            }
 		}		
         return newCommand;
     }

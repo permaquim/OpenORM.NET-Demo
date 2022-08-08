@@ -126,9 +126,9 @@ namespace Demo
             //    (long)PaisComboBox.SelectedValue
             //    );
 
-           var usuario =  entidad.Add(new AccesoADatos.Entities.Tables.dbo.Usuario()
+            var usuario =  entidad.Add(new AccesoADatos.Entities.Tables.dbo.Usuario()
               {
-                Nombre = NombreTextbox.Text.Trim(),
+                 Nombre = NombreTextbox.Text.Trim(),
                  Apellido = ApellidoTextBox.Text.Trim(),
                  Edad = Convert.ToInt16(EdadTextBox.Text.Trim()),
                  PaisId = (long)PaisComboBox.SelectedValue
@@ -140,6 +140,8 @@ namespace Demo
         private void ModificarUsuario()
         {
             AccesoADatos.Business.Tables.dbo.Usuario entidad = new();
+
+            entidad.BeginTransaction();
 
             //entidad.Update(
             //    Convert.ToInt64(IdValueLabel.Text),
@@ -157,6 +159,11 @@ namespace Demo
                 Edad = Convert.ToInt16(EdadTextBox.Text.Trim()),
                 PaisId = (long)PaisComboBox.SelectedValue
             });
+
+
+            AccesoADatos.Business.Tables.dbo.Pais pais = new(entidad);
+
+            entidad.EndTransaction(true);
 
         }
 

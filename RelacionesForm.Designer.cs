@@ -55,7 +55,7 @@
             // NombreContinenteLabel
             // 
             this.NombreContinenteLabel.AutoSize = true;
-            this.NombreContinenteLabel.Location = new System.Drawing.Point(24, 328);
+            this.NombreContinenteLabel.Location = new System.Drawing.Point(13, 328);
             this.NombreContinenteLabel.Name = "NombreContinenteLabel";
             this.NombreContinenteLabel.Size = new System.Drawing.Size(116, 15);
             this.NombreContinenteLabel.TabIndex = 11;
@@ -64,7 +64,7 @@
             // NombrePaisLabel
             // 
             this.NombrePaisLabel.AutoSize = true;
-            this.NombrePaisLabel.Location = new System.Drawing.Point(24, 296);
+            this.NombrePaisLabel.Location = new System.Drawing.Point(13, 296);
             this.NombrePaisLabel.Name = "NombrePaisLabel";
             this.NombrePaisLabel.Size = new System.Drawing.Size(78, 15);
             this.NombrePaisLabel.TabIndex = 10;
@@ -86,7 +86,7 @@
             // 
             // BotonSalir
             // 
-            this.BotonSalir.Location = new System.Drawing.Point(808, 408);
+            this.BotonSalir.Location = new System.Drawing.Point(688, 344);
             this.BotonSalir.Name = "BotonSalir";
             this.BotonSalir.Size = new System.Drawing.Size(75, 23);
             this.BotonSalir.TabIndex = 12;
@@ -97,7 +97,7 @@
             // PaisComboBox
             // 
             this.PaisComboBox.FormattingEnabled = true;
-            this.PaisComboBox.Location = new System.Drawing.Point(664, 304);
+            this.PaisComboBox.Location = new System.Drawing.Point(664, 288);
             this.PaisComboBox.Name = "PaisComboBox";
             this.PaisComboBox.Size = new System.Drawing.Size(121, 23);
             this.PaisComboBox.TabIndex = 13;
@@ -106,7 +106,7 @@
             // GrillaUsuariosPais
             // 
             this.GrillaUsuariosPais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GrillaUsuariosPais.Location = new System.Drawing.Point(536, 16);
+            this.GrillaUsuariosPais.Location = new System.Drawing.Point(496, 16);
             this.GrillaUsuariosPais.MultiSelect = false;
             this.GrillaUsuariosPais.Name = "GrillaUsuariosPais";
             this.GrillaUsuariosPais.RowTemplate.Height = 25;
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 450);
+            this.ClientSize = new System.Drawing.Size(976, 381);
             this.Controls.Add(this.GrillaUsuariosPais);
             this.Controls.Add(this.PaisComboBox);
             this.Controls.Add(this.BotonSalir);

@@ -420,6 +420,20 @@ public class WhereParameter : WhereParameterBase
             throw new Exception("Add: Overload Error.");
         }
     }
+    internal void OpenParentheses()
+    {
+        _whereParameters.Add(new ParameterItem(" ( "));
+    }
+    internal void CloseParentheses()
+    {
+        _whereParameters.Add(new ParameterItem(" ) "));
+    }
+
+    internal void AddConjunction(AccesoADatos.sqlEnum.ConjunctionEnum Conjunction)
+    {
+        _whereParameters.Add(new ParameterItem(" " + Enum.GetName(typeof(AccesoADatos.sqlEnum.ConjunctionEnum), Conjunction) + " "));
+    }
+
 }
 public class OrderByParameter : OrderByParameterBase
 {

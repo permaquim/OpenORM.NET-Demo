@@ -195,7 +195,7 @@ using System.Text;
 	} //namespace AccesoADatos.Business.Relations.dbo
 	namespace AccesoADatos.Business.Relations.dbo {
 	    /// <summary>
-	    /// 
+	    /// Es la tabla de paises
 	    /// </summary>
 		public class Pais : RelationsDataHandler
 		{

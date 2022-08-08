@@ -42,7 +42,18 @@ namespace Demo
         private void CargarUsuarios()
         {
             AccesoADatos.Business.Tables.dbo.Usuario entidad = new();
+            //UsuariosDataGridview.DataSource = entidad.Items();
+
+            entidad.Where.OpenParentheses();
+            entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 1);
+            entidad.Where.CloseParentheses();
+            entidad.Where.AddConjunction(AccesoADatos.sqlEnum.ConjunctionEnum.OR);
+            entidad.Where.OpenParentheses();
+            entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 2);
+            entidad.Where.CloseParentheses();
+
             UsuariosDataGridview.DataSource = entidad.Items();
+
 
         }
         /// <summary>
@@ -54,7 +65,8 @@ namespace Demo
         {
             AccesoADatos.Business.Tables.dbo.Usuario entidad = new();
             entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.PaisId,
-               AccesoADatos.sqlEnum.OperandEnum.Equal, paisId);
+                AccesoADatos.sqlEnum.OperandEnum.Equal, paisId);
+
             UsuariosDataGridview.DataSource = entidad.Items();
 
         }

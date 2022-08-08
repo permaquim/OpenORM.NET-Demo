@@ -18,7 +18,7 @@
   <ForceDatetimeToDatetimeNow>false</ForceDatetimeToDatetimeNow>
   <DeletePreviousGeneratedFiles>false</DeletePreviousGeneratedFiles>
   <DbDriver>SQL</DbDriver>
-  <ConnectionString>Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Depositario;Data Source=PC-SISTEMAS</ConnectionString>
+  <ConnectionString>Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Demo;Data Source=PC-SISTEMAS</ConnectionString>
   <SelectedViews>
     <string>dbo.VistaUsuario</string>
   </SelectedViews>
@@ -254,7 +254,6 @@
   </SelectedTables>
   <SelectedDatabase>Demo</SelectedDatabase>
   <SelectedTemplates>
-    <string>2014e055-c7dd-4e8b-be94-e71b20110430</string>
     <string>353e226c-6bf1-4079-a822-ba12163b71c9</string>
   </SelectedTemplates>
   <Location>\</Location>
