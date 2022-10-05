@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccesoADatos.Business.Relations.dbo;
+using AccesoADatos.Business.Tables.dbo;
 
 namespace Demo
 {
@@ -72,25 +74,56 @@ namespace Demo
                 AgregarUsuario();
                 CargarUsuarios();
             }
+
+            //AccesoADatos.Business.Tables.dbo.Banco bco = new();
+            //bco.Add(new AccesoADatos.Entities.Tables.dbo.Banco()
+            //{
+            //    Codigo = "Demo",
+            //    Descripcion = "Descripcion",
+            //    FechaCreacion = DateTime.Now,
+            //    Habilitado = true,
+            //    Nombre = "Nombre",
+            //    PaisId = 0,
+            //    UsuarioCreacion = 1
+            //},9);
+
         }
 
         private void BotonModificar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirma modificar?", "Confirmación modificación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                ModificarUsuario();
-                CargarUsuarios();
-            }
+            //if (MessageBox.Show("Confirma modificar?", "Confirmación modificación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+            //    ModificarUsuario();
+            //    CargarUsuarios();
+            //}
+
+
+            //AccesoADatos.Business.Tables.dbo.Banco bco = new();
+            //bco.Update(new AccesoADatos.Entities.Tables.dbo.Banco()
+            //{
+            //     Id = 2,
+            //    Codigo = "Demo2",
+            //    Descripcion = "Descripcion2",
+            //    Habilitado = true,
+            //    Nombre = "Nombre 2",
+            //    PaisId = 3,
+            //    FechaCreacion = DateTime.Now,
+            //    UsuarioModificacion  =2,
+            //    FechaModificacion = DateTime.Now,
+            //}, 9);
         }
 
 
         private void BotonEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirma eliminar?", "Confirmación borrado", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                EliminarUsuario();
-                CargarUsuarios();
-            }
+            //if (MessageBox.Show("Confirma eliminar?", "Confirmación borrado", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+            //    EliminarUsuario();
+            //    CargarUsuarios();
+            //}
+
+            //AccesoADatos.Business.Tables.dbo.Banco bco = new();
+            //bco.Delete(3, 9);
         }
         #endregion
 
@@ -170,9 +203,9 @@ namespace Demo
         private void EliminarUsuario()
         {
             AccesoADatos.Business.Tables.dbo.Usuario entidad = new();
-
+            
             entidad.Delete(Convert.ToInt64(IdValueLabel.Text));
-
+  
          }
 
         #endregion

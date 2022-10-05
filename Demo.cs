@@ -44,13 +44,15 @@ namespace Demo
             AccesoADatos.Business.Tables.dbo.Usuario entidad = new();
             //UsuariosDataGridview.DataSource = entidad.Items();
 
-            entidad.Where.OpenParentheses();
-            entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 1);
-            entidad.Where.CloseParentheses();
-            entidad.Where.AddConjunction(AccesoADatos.sqlEnum.ConjunctionEnum.OR);
-            entidad.Where.OpenParentheses();
-            entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 2);
-            entidad.Where.CloseParentheses();
+            //entidad.Where.OpenParentheses();
+            //entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 1);
+            //entidad.Where.CloseParentheses();
+            //entidad.Where.AddConjunction(AccesoADatos.sqlEnum.ConjunctionEnum.OR);
+            //entidad.Where.OpenParentheses();
+            //entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 2);
+            //entidad.Where.CloseParentheses();
+
+            entidad.TopQuantity = 2;
 
             UsuariosDataGridview.DataSource = entidad.Items();
 
@@ -97,8 +99,8 @@ namespace Demo
         /// </summary>
         private void CargarProcedimientoUsuarios()
         {
-            AccesoADatos.Business.Procedures.dbo.ObtenerUsuario entidad = new();
-            UsuariosDataGridview.DataSource = entidad.Items();
+            //AccesoADatos.Business.Procedures.dbo.ObtenerUsuario entidad = new();
+            //UsuariosDataGridview.DataSource = entidad.Items();
         }
 
         private void BotonABM_Click(object sender, EventArgs e)

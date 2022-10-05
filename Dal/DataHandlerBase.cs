@@ -257,15 +257,13 @@ public class DataHandlerBase: IDataHandler
         _parameterizedValues.Clear();
         foreach (ParameterItem field in item._whereParameters)
         {
-            if (field.Values != null)
+            if(field.IsFieldParameter)
             {
-                foreach (ParameterItemValue value in field.Values)
-                {
-                    _parameterizedValues.Add(new ParameterItemValue(value.Name.Replace(Constants.INPUT_PARAMETER, _parameterPrefix), value.Value));
-                }
+                 foreach (ParameterItemValue value in field.Values)
+                 {
+                     _parameterizedValues.Add(new ParameterItemValue(value.Name.Replace(Constants.INPUT_PARAMETER, _parameterPrefix), value.Value));
+                 }
             }
-            else
-                _parameterizedValues.Add(new ParameterItemValue(field.FullQuery, null));
         }
     }	
     /// <summary>
@@ -432,13 +430,10 @@ public class DataHandlerBase: IDataHandler
         newCommand.CommandTimeout = _commandTimeout;
         foreach (ParameterItemValue parameterValue in _parameterizedValues)
 		{
-            if (parameterValue.Value != null)
-            {
-                IDbDataParameter parameter = newCommand.CreateParameter();
-                parameter.ParameterName = parameterValue.Name;
-                parameter.Value = parameterValue.Value == null ? DBNull.Value : parameterValue.Value;
-                newCommand.Parameters.Add(parameter);
-            }
+			    IDbDataParameter parameter = newCommand.CreateParameter();
+			    parameter.ParameterName = parameterValue.Name;
+			    parameter.Value = parameterValue.Value == null ? DBNull.Value : parameterValue.Value;
+			    newCommand.Parameters.Add(parameter);
 		}		
         return newCommand;
     }

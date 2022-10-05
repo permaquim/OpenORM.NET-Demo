@@ -22,11 +22,10 @@
   <SelectedViews>
     <string>dbo.VistaUsuario</string>
   </SelectedViews>
-  <SelectedStoredProcedures>
-    <string>dbo.ObtenerUsuario</string>
-  </SelectedStoredProcedures>
+  <SelectedStoredProcedures />
   <UnselectedStoredProcedures>
     <string>dbo.fn_diagramobjects</string>
+    <string>dbo.ObtenerUsuario</string>
     <string>dbo.sp_alterdiagram</string>
     <string>dbo.sp_creatediagram</string>
     <string>dbo.sp_dropdiagram</string>
@@ -248,13 +247,15 @@
     </MappedStoredProcedure>
   </MappedStoredProcedures>
   <SelectedTables>
+    <string>dbo.Banco</string>
     <string>dbo.Continente</string>
+    <string>dbo.Log</string>
     <string>dbo.Pais</string>
     <string>dbo.Usuario</string>
   </SelectedTables>
   <SelectedDatabase>Demo</SelectedDatabase>
   <SelectedTemplates>
-    <string>353e226c-6bf1-4079-a822-ba12163b71c9</string>
+    <string>2014e055-c7dd-4e8b-be94-e71b20110430</string>
   </SelectedTemplates>
   <Location>\</Location>
   <DatasourceServer />
@@ -292,6 +293,11 @@
     <TemplateConfigurationEntry>
       <Template>RadzenBlazor View ReportBuilder</Template>
       <Name>Radzen Blazor Generation folder</Name>
+      <Value />
+    </TemplateConfigurationEntry>
+    <TemplateConfigurationEntry>
+      <Template>BaseClasses Extensions Builder</Template>
+      <Name>BaseClasses Extensions Generation folder</Name>
       <Value />
     </TemplateConfigurationEntry>
   </TemplateConfigurationEntries>

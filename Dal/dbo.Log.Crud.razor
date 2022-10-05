@@ -1,0 +1,238 @@
+@page "/cruddboLog"
+@inject ISnackbar Snackbar
+
+@if (Log_entities == null)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+}
+else
+{
+    if (crudMode == CrudMode.List)
+    {
+        <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="Add" >Nuevo... </MudButton>
+        <MudTable Items="Log_entities" Hover="true" SortLabel="Sort By" Elevation="0"  Filter="new Func<AccesoADatos.Entities.Tables.dbo.Log ,bool>(FilterFunc1)">
+            <ToolBarContent>
+            <MudText Typo="Typo.h6">Customers</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString" Placeholder="buscar..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent> 
+        <HeaderContent>
+            <MudTh></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.TipoId)">TipoId</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.AplicacionId)">AplicacionId</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Fecha)">Fecha</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Descripcion)">Descripcion</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Detalle)">Detalle</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Modulo)">Modulo</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.Metodo)">Metodo</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<AccesoADatos.Entities.Tables.dbo.Log, object>(x=>x.UsuarioId)">UsuarioId</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="">
+                <MudFab @onclick="@(()=>Edit(@context.Id,false))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
+                <MudFab @onclick="@(()=>Edit(@context.Id,true))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            </MudTd>
+            <MudTd DataLabel="Id">@context.Id</MudTd>
+            <MudTd DataLabel="TipoId">@context.TipoId</MudTd>
+            <MudTd DataLabel="AplicacionId">@context.AplicacionId</MudTd>
+            <MudTd DataLabel="Fecha">@context.Fecha</MudTd>
+            <MudTd DataLabel="Descripcion">@context.Descripcion</MudTd>
+            <MudTd DataLabel="Detalle">@context.Detalle</MudTd>
+            <MudTd DataLabel="Modulo">@context.Modulo</MudTd>
+            <MudTd DataLabel="Metodo">@context.Metodo</MudTd>
+            <MudTd DataLabel="UsuarioId">@context.UsuarioId</MudTd>
+            <MudTd DataLabel="">
+                <MudFab @onclick="@(()=>Edit(@context.Id,false))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
+                <MudFab @onclick="@(()=>Edit(@context.Id,true))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{10,20,50,100}" />
+        </PagerContent>
+    </MudTable>
+    }
+
+    if(crudMode==CrudMode.Add || crudMode==CrudMode.Edit || crudMode==CrudMode.Delete)
+    {
+        <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.inherit">"@(GetDialogTitle())" </MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudTextField @bind-Value="Log_entity.Id" Label="Id" Variant="Variant.Text" Margin="Margin.Normal" Disabled="true" ></MudTextField>
+            <MudTextField @bind-Value="Log_entity.TipoId" Label="TipoId" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)" ></MudTextField>
+            <MudTextField @bind-Value="Log_entity.AplicacionId" Label="AplicacionId" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)" ></MudTextField>
+            <MudDatePicker Label="Fecha" @bind-Date="Log_entity.Fecha" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)"/>
+            <MudTextField @bind-Value="Log_entity.Descripcion" Label="Descripcion" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)"></MudTextField>
+            <MudTextField @bind-Value="Log_entity.Detalle" Label="Detalle" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)"></MudTextField>
+            <MudTextField @bind-Value="Log_entity.Modulo" Label="Modulo" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)"></MudTextField>
+            <MudTextField @bind-Value="Log_entity.Metodo" Label="Metodo" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)"></MudTextField>
+            <MudTextField @bind-Value="Log_entity.UsuarioId" Label="UsuarioId" Variant="Variant.Text" Margin="Margin.Normal" Disabled="@(crudMode == CrudMode.Edit || crudMode == CrudMode.Add ? false : true)" ></MudTextField>
+            
+            <br />
+            <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Aceptar</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="Cancel">Cancelar</MudButton>
+        </MudCardContent>
+        </MudCard>
+    }
+}
+
+@code {
+    /// <summary>
+    /// Crud Mode Enum
+    /// </summary>
+    private enum CrudMode
+    {
+        List,
+        Add,
+        Edit,
+        Delete
+    }
+    /// <summary>
+    /// Variables to handle main entity
+    /// </summary>
+    private AccesoADatos.Entities.Tables.dbo.Log Log_entity = new();
+    private List<AccesoADatos.Entities.Tables.dbo.Log> Log_entities = null;
+
+    private string searchString =string.Empty;
+    /// <summary>
+    ///  Page crud mode {List,Add,Edit, Delete,}
+    /// </summary>
+    private CrudMode crudMode = CrudMode.List;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(LoadMainEntityData);
+        await Task.Run(LoadTypesData);
+    }
+    #region Loading entities data
+    /// <summary>
+    /// Loads main entity data
+    /// </summary>
+    private void LoadMainEntityData()
+    {
+        AccesoADatos.Business.Tables.dbo.Log entity = new();
+        Log_entities = entity.Items();
+    }
+    /// <summary>
+    /// Loads TypeTable data
+    /// </summary>
+    private void LoadTypesData()
+    {
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Initializations for adding a new entity
+    /// </summary>
+    private void Add()
+    {
+        //Main entity initialization
+        Log_entity = new();
+        //Relations entities initialization
+        crudMode = CrudMode.Add;
+    }
+    /// <summary>
+    /// Initializations for editing an entity
+    /// </summary>
+    private void Edit(long id, bool delete)
+    {
+        Log_entity = Log_entities.FirstOrDefault(c => c.Id == id);
+
+        if (delete)
+            crudMode = CrudMode.Delete;
+        else
+            crudMode = CrudMode.Edit;
+    }
+    /// <summary>
+    /// Operation depending on Crud mode
+    /// </summary>
+    private void Save()
+    {
+        string actionInformation = string.Empty;
+        AccesoADatos.Business.Tables.dbo.Log crud = new();
+        switch (crudMode)
+        {
+            case CrudMode.Add:
+                crud.Add(Log_entity);
+                actionInformation = "agregado.";
+                break;
+            case CrudMode.Edit:
+                crud.Update(Log_entity);
+                actionInformation = "modificado.";
+                break;
+            case CrudMode.Delete:
+                crud.Delete(Log_entity);
+                actionInformation = "eliminado.";
+                break;
+        }
+
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.BottomCenter;
+        Snackbar.Add("El registro ha sido " + actionInformation, Severity.Success);
+
+        // Sets Crud mode to List
+        crudMode = CrudMode.List;
+        
+        LoadMainEntityData();
+    }
+    /// <summary>
+    /// Crud mode cancellation and default mode
+    /// </summary>
+    private void Cancel()
+    {
+        crudMode = CrudMode.List;  
+        LoadMainEntityData();
+    }
+    /// <summary>
+    /// Sets detail panel title - TODO: Implement Multilanguage
+    /// </summary>
+    /// <returns></returns>
+    private string GetDialogTitle()
+    {
+        string retValue = string.Empty;
+        switch (crudMode)
+        {
+            case CrudMode.Add:
+                retValue = "Nuevo...";
+                break;
+            case CrudMode.Edit:
+                retValue = "Editar...";
+                break;
+            case CrudMode.Delete:
+                retValue = "Borrar...";
+                break;
+        }
+        return retValue;
+    }
+
+    #region Selection events
+    #endregion
+
+    #region Table filtering implementation
+    
+    private bool FilterFunc1(AccesoADatos.Entities.Tables.dbo.Log element) => FilterFunc(element, searchString);
+
+    private bool FilterFunc(AccesoADatos.Entities.Tables.dbo.Log element, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (!string.IsNullOrWhiteSpace(element.Descripcion) && element.Descripcion.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (!string.IsNullOrWhiteSpace(element.Detalle) && element.Detalle.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (!string.IsNullOrWhiteSpace(element.Modulo) && element.Modulo.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (!string.IsNullOrWhiteSpace(element.Metodo) && element.Metodo.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if ($"{ element.TipoId} { element.AplicacionId} { element.UsuarioId} ".Contains(searchString))
+            return true;
+        return false;
+    }
+    #endregion
+}
+

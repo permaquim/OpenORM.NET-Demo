@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dal\Business.Tables.Extensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
   </ItemGroup>
@@ -20,10 +24,6 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dal\" />
   </ItemGroup>
 
   <ItemGroup>

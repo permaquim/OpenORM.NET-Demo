@@ -7,16 +7,19 @@ public class ParameterItem
     public string Name { get; set; }
     public List<ParameterItemValue> Values {get;set;}
 	public string FullQuery  {get;set;}
-    public ParameterItem(String fullQuery)
+	public bool IsFieldParameter  {get;set;} = true;
+    public ParameterItem(String fullQuery, bool isFieldParameter = true)
 	{
 		FullQuery = fullQuery;
+		IsFieldParameter = isFieldParameter;
 	}
-    public ParameterItem(string fullQuery, string column, string operand, string name, List<ParameterItemValue> values)
+    public ParameterItem(string fullQuery, string column, string operand, string name, List<ParameterItemValue> values, bool isFieldParameter = true)
 	{
 		Operand   = operand;
 		Values     = values;
         Name = name;
 		FullQuery = fullQuery;
+		IsFieldParameter = isFieldParameter;
 	}
 }
 public class ParameterItemValue
@@ -422,18 +425,16 @@ public class WhereParameter : WhereParameterBase
     }
     internal void OpenParentheses()
     {
-        _whereParameters.Add(new ParameterItem(" ( "));
+        _whereParameters.Add(new ParameterItem(Constants.SQL_OPENPARENTHESES, false));
     }
     internal void CloseParentheses()
     {
-        _whereParameters.Add(new ParameterItem(" ) "));
+        _whereParameters.Add(new ParameterItem(Constants.SQL_CLOSEPARENTHESES, false));
     }
-
     internal void AddConjunction(AccesoADatos.sqlEnum.ConjunctionEnum Conjunction)
     {
-        _whereParameters.Add(new ParameterItem(" " + Enum.GetName(typeof(AccesoADatos.sqlEnum.ConjunctionEnum), Conjunction) + " "));
+        _whereParameters.Add(new ParameterItem(" " + Enum.GetName(typeof(AccesoADatos.sqlEnum.ConjunctionEnum), Conjunction) + " ", false));
     }
-
 }
 public class OrderByParameter : OrderByParameterBase
 {

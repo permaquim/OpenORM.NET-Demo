@@ -183,6 +183,18 @@ using System.Text;
                  {
                      this.whereParameter.Add(conjunction, Enum.GetName(typeof(ColumnEnum), column), operand, value);
                  }
+                 public void AddOperand(AccesoADatos.sqlEnum.ConjunctionEnum Conjunction)
+                 {
+                     this.whereParameter.AddConjunction(Conjunction);
+                 }
+                 public void OpenParentheses()
+                 {
+                     this.whereParameter.OpenParentheses();
+                 }
+                 public void CloseParentheses()
+                 {
+                     this.whereParameter.CloseParentheses();
+                 }
             }
             public class OrderByCollection : OrderByParameter {
                  internal OrderByParameter orderByParameter = new OrderByParameter();
