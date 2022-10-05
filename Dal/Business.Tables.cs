@@ -1343,7 +1343,7 @@ using System.Text;
                 dh.WhereParameter = this.Where;
                 dh.OrderByParameter = this.OrderBy;
                 dh.GroupByParameter = this.GroupBy;
-                dh.TopQuantity = this.TopQuantity;
+                dh.Top( base._topSpec.Number,base._topSpec.IsPercent);
                 _entities = dh.Items().Cast<Entities.Tables.dbo.Usuario>().ToList<Entities.Tables.dbo.Usuario>();
                 return _entities;
             }

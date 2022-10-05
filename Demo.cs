@@ -52,7 +52,7 @@ namespace Demo
             //entidad.Where.Add(AccesoADatos.Business.Tables.dbo.Usuario.ColumnEnum.Id, AccesoADatos.sqlEnum.OperandEnum.Equal, 2);
             //entidad.Where.CloseParentheses();
 
-            entidad.TopQuantity = 2;
+            entidad.Top(100, true);
 
             UsuariosDataGridview.DataSource = entidad.Items();
 

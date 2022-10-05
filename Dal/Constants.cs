@@ -37,6 +37,7 @@ public class Constants {
          internal const string SQL_UPDATE = " UPDATE ";
          internal const string SQL_DELETE = " DELETE ";
          internal const string SQL_TOP = " TOP ";
+         internal const string SQL_PERCENT = " PERCENT ";
          internal const string SQL_FROM = " FROM ";
          internal const string SQL_WHERE = " WHERE ";
          internal const string SQL_SET = " SET ";

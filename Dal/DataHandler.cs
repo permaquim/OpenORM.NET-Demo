@@ -89,8 +89,18 @@ public class DataHandler : DataHandlerBase
     {
         throw new NotImplementedException();
     }
+    
+    public void Top(int number,bool isPercent = false)
+    {
+        _topSpec.Number = number;
+        _topSpec.IsPercent = isPercent;
 
-    public int TopQuantity { get; set; }
+    }
+    internal TopSpec _topSpec;
+    internal struct TopSpec {
+        public int Number;
+        public bool IsPercent;
+    } 
     /// <summary>
     /// Returns a List<IDataItem> for a SQL query.
     /// </summary>
@@ -102,8 +112,12 @@ public class DataHandler : DataHandlerBase
             //Clears previous result
             _itemList.Clear();
             _commandText = Constants.SQL_SELECT ;
-            if (TopQuantity > 0)
-                _commandText += Constants.SQL_TOP + TopQuantity.ToString()+ " ";
+
+            if (_topSpec.Number > 0)
+                _commandText += Constants.SQL_TOP + _topSpec.Number.ToString()+ " " ;
+            if (_topSpec.IsPercent)
+                _commandText += Constants.SQL_PERCENT + " ";
+
             _commandText += GetFieldList(true, true);
             _commandText += Constants.SQL_FROM ;
             _commandText += GetFullDataEntityName();
